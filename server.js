@@ -1,9 +1,14 @@
-const express =require('express');
+const express=require('express');
 const mongoose=require('mongoose');
+const bodyParser =require('body-parser');
 
 const app =express();
+// import routes 
+const postRoutes =require('./routes/posts');
 
-
+//app middleware
+app.use(bodyParser.json());
+app.use(postRoutes );
 
 
 const PORT =8000;
@@ -14,7 +19,7 @@ mongoose.connect(DB_URL).then(()=>{
     console.log("Database Conected");
 })
 .catch((err)=>{
-    console.log("Conection failed",err);
+    console.log("Conection failed",err);mongoose.set('strictQuery', true);
 })
 
 app.listen(PORT, ()=>{
