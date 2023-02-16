@@ -1,6 +1,7 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const bodyParser =require('body-parser');
+const cors=require('cors');
 
 const app =express();
 // import routes 
@@ -8,6 +9,7 @@ const postRoutes =require('./routes/posts');
 
 //app middleware
 app.use(bodyParser.json());
+app.use(cors());
 app.use(postRoutes );
 
 
